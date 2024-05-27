@@ -1,0 +1,42 @@
+.form {
+  padding: 16px;
+  padding-top: 0px;
+  text-align: center;
+}
+.heading{
+  color: black;
+}
+.btn {
+  background: #4caf50;
+  color: white;
+  margin-top: 20px;
+  border: none;
+  cursor: pointer;
+  font-size: 16px;
+  padding-block: 8px;
+  padding-inline: 35px;
+  border-radius: 5px;
+}
+.btn:hover,
+.btn:active {
+  background-color: #367838;
+}
+.btn:disabled {
+  background-color: #8db58f !important;
+  cursor: not-allowed !important;
+}
+.div1 {
+  color: red;
+  width: 180px;
+  margin: auto;
+  margin-top: 15px;
+  text-align: left !important;
+}
+.div2 {
+  color: black;
+  width: 180px;
+  margin: auto;
+  margin-top: 15px;
+  font-size: small;
+  text-align: left !important;
+}

@@ -1,0 +1,37 @@
+.maincourse {
+  text-align: center;
+  font-size: 30px;
+}
+.maincourse b {
+  border-top: 5px solid #d16602;
+  font-style: italic;
+}
+.example {
+  display: flex;
+  list-style-type: none;
+  width: 95%;
+  overflow: scroll;
+}
+/* .example::-webkit-scrollbar {
+  display: none;
+} */
+
+.example::-webkit-scrollbar {
+  width: 0px;
+  height: 11px;
+}
+.example::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+.example::-webkit-scrollbar-thumb {
+  background: #888;
+}
+.example::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 500px) {
+  .maincourse {
+    font-size: 30px;
+  }
+}

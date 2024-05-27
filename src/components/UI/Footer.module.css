@@ -1,0 +1,47 @@
+.main {
+  color: rgb(224, 224, 224);
+  line-height: 15px;
+  font-family: cursive;
+  border-top: 2px solid white;
+  border-bottom: 2px solid white;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  padding-bottom: 20px;
+
+  box-shadow: rgba(197, 197, 197, 0.1) 0px 14px 30px,
+    rgba(197, 197, 197, 0.12) 0px -12px 30px,
+    rgba(197, 197, 197, 0.12) 0px 4px 6px,
+    rgba(197, 197, 197, 0.1) 0px 12px 13px,
+    rgba(197, 197, 197, 0.09) 0px -3px 5px;
+}
+.main h1 {
+  line-height: 35px;
+  color: #a75c00;
+}
+.address {
+  width: max-content;
+  border: 1px solid rgb(44, 44, 44);
+  font-size: 20px;
+  font-family: sans-serif;
+  line-height: 20px;
+  margin: auto;
+  margin-top: 10px;
+  padding-block: 15px;
+  padding-inline: 30px;
+  border-radius: 10px;
+}
+.icons {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.icons .i{
+    cursor: pointer;
+    font-size: xx-large;
+}
+@media (max-width: 620px) {
+  .address {
+    width: auto;
+  }
+}

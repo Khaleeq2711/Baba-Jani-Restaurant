@@ -1,25 +1,36 @@
-import logo from './logo.svg';
-import './App.css';
+///////////////////////////////////////////REDUX, ACCOUNT DETAILS, NAME AVATAR, 
+import React from "react";
+import "./App.css";
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from "react-router-dom";
+import Root from "./components/Root/Root";
+import Home from "./components/home/Home";
+import Admin from "./components/Admin/Admin";
+
+const myRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <Root />,
+    // errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <Home /> },
+      { path: "admin panel username password 123", element: <Admin /> },
+      { path: "*", element: <Navigate to="/" replace /> },
+    ],
+  },
+]);
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <RouterProvider router={myRouter} />
     </div>
   );
 }
-
 export default App;
+
+//shop
+//    status:true

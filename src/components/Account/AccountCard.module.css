@@ -1,0 +1,85 @@
+.loginForm {
+  width: 320px;
+  margin: auto;
+  padding: 10px 30px;
+  color: black !important;
+  background-color: antiquewhite;
+  display: flex;
+  flex-direction: column;
+  border-radius: 10px;
+  text-align: center;
+  justify-content: center;
+  font-size: x-large;
+  font-weight: bold;
+  gap: 20px;
+}
+.loginForm .button {
+  align-self: center;
+  padding-block: 10px;
+  padding-inline: 30px;
+  border: 2px solid black;
+  border-radius: 10px;
+}
+.loginForm .button:hover {
+  cursor: pointer;
+  border: 2px solid rgb(0, 255, 255);
+  color: rgb(0, 66, 66);
+}
+.validityText {
+  font-size: small !important;
+  font-weight: normal;
+}
+.lastDiv {
+  width: 100%;
+  margin: auto;
+  margin-top: 20px;
+  display: flex;
+  text-align: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+.link {
+  width: fit-content;
+  height: fit-content;
+  font-size: small !important;
+}
+.link:hover {
+  cursor: pointer;
+}
+.google-section {
+  text-align: center;
+  color: black !important;
+  font-size: large;
+}
+.google-section div:nth-child(2) {
+  padding: 10%;
+}
+.googlePicture {
+  color: black;
+  height: 50px;
+  width: auto;
+}
+.googlePicture:hover,
+.googlePicture:active {
+  cursor: pointer;
+}
+.google-section button {
+  border: 1px solid white;
+}
+.google-section button:active {
+  background-color: rgb(160, 217, 255);
+  border-radius: 10px;
+}
+
+@media (max-width: 510px) {
+  .lastDiv {
+    width: auto !important;
+    flex-direction: column-reverse;
+    justify-content: center;
+    text-align: center;
+  }
+  .loginForm {
+    width: 220px !important;
+    padding: 0px !important;
+  }
+}

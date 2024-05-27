@@ -1,0 +1,14 @@
+.maincourse {
+  text-align: center;
+  font-size: 40px;
+}
+.maincourse b {
+  border-top: 5px solid #d16602;
+  font-style: italic;
+}
+
+@media (max-width: 500px) {
+  .maincourse {
+    font-size: 30px;
+  }
+}

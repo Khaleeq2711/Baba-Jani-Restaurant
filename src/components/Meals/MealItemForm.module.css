@@ -1,0 +1,30 @@
+.form {
+  display: flex;
+  justify-content: right;
+  flex-direction: column;
+}
+
+.form button {
+  cursor: pointer;
+  background-color: #b917b1;
+  border: 1px solid #b917b1;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: medium;
+  padding: 0.2rem 2rem;
+}
+
+.form button:hover,
+.form button:active {
+  background-color: #8e0c92;
+  border-color: #8e0c92;
+}
+
+@media (max-width: 500px) {
+  .form button {
+    align-self: center;
+    padding: 0.4rem 2rem;
+    width: 130px;
+  }
+}

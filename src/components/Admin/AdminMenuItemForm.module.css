@@ -1,0 +1,23 @@
+.form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.form button {
+  cursor: pointer;
+  width: 65px;
+  background-color: #b917b1;
+  border: none;
+  color: white;
+  border-radius: 20px;
+  font-weight: bold;
+  font-size: larger;
+  /* padding: 0.2rem; */
+}
+
+.form button:hover,
+.form button:active {
+  background-color: #8e0c92;
+}
+
