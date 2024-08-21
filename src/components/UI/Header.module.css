@@ -55,3 +55,13 @@
     height: 30px !important;
   }
 }
+
+.shimmer{
+  color: rgb(247, 19, 213);
+  margin-top: 0;
+  font-weight: bold;
+  font-size: large;
+  border-bottom: 4px solid #d16602;
+  padding: 5px;
+  margin-right: 20px;
+}

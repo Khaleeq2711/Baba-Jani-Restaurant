@@ -1,0 +1,30 @@
+.profile {
+    padding: 20px;
+    text-align: center;
+  }
+  
+  .profile h2 {
+    margin-bottom: 20px;
+    color: rgb(173, 72, 0);
+  }
+  
+  .profile p {
+    margin: 10px 0;
+    color: black;
+  }
+  
+  .profileImage {
+    width: 100px;
+    height: 100px;
+    display: flex;
+    border-radius: 50%;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto; /* Center the div horizontally */
+  }
+  
+  .avatar {
+    width: 100px;
+    height: 100px;
+  }
+  

@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import classes from "./Header.module.css";
 
 import CartButton from "../Cart/CartButton";
+import Profile from "../Account/Profile"
 import Logo from "../assets/logo.png";
 import BabaJani from "../assets/BabaJani.svg";
 import { useNavigate } from "react-router-dom";
@@ -20,6 +21,8 @@ import { deepOrange } from "@mui/material/colors";
 import Logout from "@mui/icons-material/Logout";
 import { auth } from "../services/firebase";
 import { signOut } from "firebase/auth";
+import { useCookies } from 'react-cookie'
+
 
 const Header = (props) => {
   const navigate = useNavigate();
@@ -29,11 +32,25 @@ const Header = (props) => {
   const [anchorEl, setAnchorEl] = useState(null);
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
+  const [profileModalOpen, setProfileModalOpen] = useState(false); // State for profile modal
+  const [cookies, removeCookie] = useCookies(['user'])
+  const [loggedin, setloggedin] = useState(false);
+
+
+  useEffect(() => {
+    if (cookies.uid) {
+      setloggedin(true);
+    }
+  }, [cookies]);
+
 
   const openMenu = Boolean(anchorEl);
   const profileClickHandler = () => {
     setAnchorEl(null);
-    navigate("/profile"); ///////////////
+    setProfileModalOpen(true); // Open the profile modal
+  };
+  const closeProfileModal = () => {
+    setProfileModalOpen(false); // Close the profile modal
   };
   const logoutClickHandler = () => {
     setAnchorEl(null);
@@ -44,6 +61,8 @@ const Header = (props) => {
         setLoading(false);
         console.log("Logout Successful");
         setSuccess(true);
+        removeCookie('user');
+        setloggedin(false);
         setTimeout(() => {
           setSuccess(false);
         }, 2000);
@@ -83,16 +102,19 @@ const Header = (props) => {
         </div>
         {props.cartVisibility && (
           <div className={classes.rightSide}>
-            <Avatar
-              style={{ cursor: "pointer" }}
-              onClick={props.onProfileClick}
-            />
-            <Avatar
+            {cookies.user && <Avatar
               sx={{ bgcolor: deepOrange[500], cursor: "pointer" }}
               onClick={(event) => setAnchorEl(event.currentTarget)}
+              src={cookies.user?.photoURL || undefined} // Use undefined if photoURL is not present
             >
-              M
-            </Avatar>
+              {!cookies.user?.photoURL && <Avatar/>} {/* Fallback content */}
+            </Avatar>}
+            {!cookies.user && <div style={{ cursor: "pointer" }}
+              onClick={props.onProfileClick}>
+              <p className={classes.shimmer}>
+                Sign In
+              </p>
+            </div>}
             <Menu
               anchorEl={anchorEl}
               id="account-menu"
@@ -130,7 +152,9 @@ const Header = (props) => {
               disableScrollLock={true}
             >
               <MenuItem onClick={profileClickHandler}>
-                <Avatar /> Profile
+                <Avatar src={cookies.user?.photoURL || undefined} // Use undefined if photoURL is not present
+            >
+            </Avatar> Profile
               </MenuItem>
               <Divider />
               <MenuItem onClick={logoutClickHandler}>
@@ -140,7 +164,7 @@ const Header = (props) => {
                 Logout
               </MenuItem>
             </Menu>{" "}
-            <CartButton onCartOpen={props.onCartOpen} />
+            {cookies.user && <CartButton onCartOpen={props.onCartOpen} />}
           </div>
         )}
       </header>
@@ -159,6 +183,8 @@ const Header = (props) => {
           Logout Successfully !
         </Alert>
       </Snackbar>
+      {profileModalOpen && <Profile onClose={closeProfileModal} />} {/* Render ProfileModal */}
+
     </>
   );
 };
