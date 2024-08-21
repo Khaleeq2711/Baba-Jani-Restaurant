@@ -9,88 +9,88 @@ const MEALS = [
     id: "m1",
     name: "Zinger Burger",
     // description: "Crispy & Crunchy !",
-    price: 350,
+    price: 450,
     // stock:true
   },
   {
     id: "m2",
     name: "Bechamel Zinger Burger",
-    price: 370,
+    price: 550,
   },
   {
     id: "m3",
     name: "Grilled Chicken Burger",
-    price: 420,
+    price: 520,
   },
   {
     id: "m4",
     name: "Caremalized Beef Burger",
-    price: 540,
+    price: 620,
   },
   {
     id: "m5",
     name: "Creamy Mushroom Burger",
-    price: 680,
+    price: 750,
   },
   {
     id: "m6",
     name: "Grilled Chicken Shawarma (Small)",
-    price: 150,
+    price: 250,
   },
   {
     id: "m7",
     name: "Grilled Chicken Shawarma (Large)",
-    price: 200,
+    price: 300,
   },
   {
     id: "m8",
     name: "Zinger Shawarma",
-    price: 250,
+    price: 350,
   },
   {
     id: "m9",
     name: "Philly Steak Shawarma",
-    price: 280,
+    price: 380,
   },
   {
     id: "m10",
     name: "(6) Buffalo Wings + Fries",
-    price: 450,
+    price: 650,
   },
   {
     id: "m11",
-    name: "(6) Cispy Wings",
-    price: 350,
+    name: "(6) Cispy Wings + Fries",
+    price: 620,
   },
   {
     id: "m12",
     name: "Tawa Chicken",
-    price: 480,
+    price: 650,
   },
   {
     id: "m13",
     name: "(6) Aloo-Chicken Samosa",
-    price: 360,
+    price: 400,
   },
   {
     id: "m14",
     name: "Masala Fries",
-    price: 120,
+    price: 150,
   },
   {
     id: "m15",
     name: "Mayo Garlic Fries",
-    price: 150,
+    price: 320,
   },
   {
     id: "m16",
     name: "Chicken Patty Burger",
-    price: 270,
+    price: 320,
   },
   {
     id: "m17",
     name: "Zinger Roll Paratha ",
-    price: 300,
+    price: 350,
   },
   {
     id: "m18",
@@ -101,17 +101,17 @@ const MEALS = [
     id: "m19",
     name: "Value Bucket",
     description: "Filled with Crispy Fried Chicken (9-Pcs)",
-    price: 1650,
+    price: 950,
   },
   {
     id: "m20",
     name: "Amchoor Samosa Plate (Small)",
-    price: 130,
+    price: 200,
   },
   {
     id: "m21",
     name: "Amchoor Samosa Plate (Large)",
-    price: 190,
+    price: 310,
   },
 ];
 const DEALS = [
@@ -127,7 +127,7 @@ const DEALS = [
     name: "Duo Box",
     description: "(2) Zinger Burgers + (2) Cripsy Chicken Pcs + (2) Fries ",
     oldPrice: 1300,
-    price: 1100,
+    price: 1000,
   },
   {
     id: "d3",
@@ -162,42 +162,42 @@ const DHAMAL_DEALS = [
     id: "d7",
     name: "Deal-3",
     description: "(4) Zinger Shawarma + (1) Free Zinger Shawarma ",
-    price: 1000,
+    price: 1200,
   },
   {
     id: "d8",
     name: "Deal-4",
     description:
       "(2) Zinger Burgers + (2) Cripy Chicken Pcs + (2) Wings + Fries ",
-    price: 1200,
+    price: 1400,
   },
   {
     id: "d9",
     name: "Deal-5",
     description:
       "(2) Zinger Burgers + (2) Patty Burger + (6) Wings + (2) Fries ",
-    price: 1550,
+    price: 1650,
   },
   {
     id: "d10",
     name: "Deal-6",
     description:
       "(2) Zinger Roll Paratha + (2) Patty Burger + (6) Wings + (2) Fries ",
-    price: 1620,
+    price: 1720,
   },
   {
     id: "d11",
     name: "Deal-7",
     description:
       "(1) Mighty Zinger Burger + (1) Zinger Burger + (2) Patty Burger + (6) Wings + Fries ",
-    price: 1920,
+    price: 1980,
   },
   {
     id: "d12",
     name: "ALL IN",
     description:
-      "(1) Mighty Zinger Burger + (1) King Beef Burger + (2) Zinger Burger + (2) Patty Burger + (9) Chicken Pieces + (6) Wings + (2) Fries ",
-    price: 4750,
+      "(1) Mighty Zinger Burger + (1) King Beef Burger + (1) Zinger Burger + (1) Patty Burger + (3) Chicken Pieces + (6) Wings + (2) Fries ",
+    price: 2750,
   },
 ];
 const PRE_WORKOUT = [
@@ -229,7 +229,7 @@ const POST_WORKOUT = [
     name: "Ceaser Salad",
     description:
       "Ceaser's Sause Romain lettuce, Croutons, cheese, tomatoes, lemon juice & Grilled Chicken!",
-    price: 390,
+    price: 290,
   },
   {
     id: "w5",

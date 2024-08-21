@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import style from "./Admin.module.css";
+import ReactGA from "react-ga4";
 // import Card from "../UI/Card";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../services/firebase";
@@ -19,6 +20,8 @@ import AdminMenu from "./AdminMenu";
 import jsPDF from "jspdf";
 import html2canvas from "html2canvas";
 import AdminInventory from "./AdminInventory";
+
+ReactGA.initialize("G-9QTVJBH0G0", { debug: true });
 
 const IOSSwitch = styled((props) => (
   <Switch focusVisibleClassName=".Mui-focusVisible" disableRipple {...props} />
@@ -72,6 +75,12 @@ const IOSSwitch = styled((props) => (
 }));
 
 const Admin = () => {
+  ReactGA.send({
+    hitType: "pageview",
+    page: "/",
+    title: "Admin Panel",
+  });
+
   const [orders, setOrders] = useState([]);
   const [shopOrders, setShopOrders] = useState([]);
   const [showLogin, setShowLogin] = useState(true); /////////////////////////////

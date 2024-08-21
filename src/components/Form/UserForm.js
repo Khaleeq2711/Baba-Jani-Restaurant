@@ -6,33 +6,12 @@ import { useSelector } from "react-redux";
 import Modal from "../UI/Modal";
 import { sendOrder } from "../services/orderService";
 import { FormControlLabel, Radio, RadioGroup } from "@mui/material";
+// import CheckoutButton from "./CheckoutButton";
+import { loadStripe } from "@stripe/stripe-js";
 
-// const sectors = [
-//   "H-13",
-//   "H-12 (Nust)",
-//   "H-11",
-//   "H-10",
-//   "I-10",
-//   "I-9",
-//   "I-8",
-//   "G-14",
-//   "G-13",
-//   "G-12",
-//   "G-11",
-//   "G-10",
-//   "G-9",
-//   "G-8",
-//   "G-7",
-//   "F-11",
-//   "F-10",
-//   "F-8",
-//   "F-7",
-//   "F-6",
-//   "E-11",
-//   "E-9",
-//   "26-Number",
-// ];
-// const options = ["1", "2", "3", "4", "Markaz"];
+const stripePromise = loadStripe(
+  "pk_test_51POgeEP95vCoaGtreAgENxVWU5l8vToFjDeyVuO8M8VMibKcHij69xuzyxVUIUtR0hX0wtSl5c62Q18IQbTK11de00qkL0jHJW"
+);
 
 const UserForm = (props) => {
   const [formValidity, setformValidity] = useState(false);
@@ -52,15 +31,43 @@ const UserForm = (props) => {
       .getMinutes()
       .toString()}`;
 
+    const redirectToCheckout = async (order) => {
+      console.log("redirectToCheckout");
+      const stripe = await stripePromise;
+      const { error } = await stripe.redirectToCheckout({
+        lineItems: [
+          {
+            price: "price_1PcVSbP95vCoaGtr20PmKgOf",//300 margin
+            quantity: 1,
+          },
+        ],
+        mode: "payment",
+        successUrl: `${window.location.origin}/success`,
+        cancelUrl: `${window.location.origin}/cancel`,
+      });
+    };
+
     const order = {
       name: enteredName,
       address: ctx.addressD,
       phone: enteredPhone,
       time: formattedTime,
       food: ctx.items,
-      totalPrice: ctx.totalPrice + ctx.delivery,
+      price: ctx.totalPrice + ctx.delivery,
+      payment: payment,
     };
-    // console.log(order);
+    console.log(order);
+
+    if (payment === "online") {
+      const checkoutOptions = {
+        lineItems: [order],
+        mode: "payment",
+        successUrl: `${window.location.origin}/success`,
+        cancelUrl: `${window.location.origin}/cancel`,
+      };
+      redirectToCheckout(order);
+    }
+
     sendOrder(order)
       .then((response) => {
         console.log("ORDER sent successfully:", response);
@@ -167,9 +174,9 @@ const UserForm = (props) => {
               onChange={(e) => setPayment(e.target.value)}
             >
               <FormControlLabel
-                value="easypaisa"
+                value="online"
                 control={<Radio />}
-                label="Easypaisa (online)"
+                label="Online Payment"
               />
               <FormControlLabel
                 value="cash"
@@ -214,7 +221,8 @@ const UserForm = (props) => {
             </button>
           </div>
         </form>
-        {/* {loading && <p>Loaading.....</p>} */}
+        {/* <CheckoutButton /> */}
+        {/* {loading && <p>Loaading.....</p >} */}
         {/* {error && <p>Something Went Wrong...</p>} */}
       </div>
     </Modal>

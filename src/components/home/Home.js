@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import ReactGA from "react-ga4";
 import Cart from "../Cart/Cart";
 import UserForm from "../Form/UserForm";
 import BannerHome from "../home/Banner";
@@ -13,7 +14,14 @@ import Address from "../Address Input/Address";
 import { getShopStatus } from "../services/orderService";
 import AccountCard from "../Account/AccountCard";
 
+ReactGA.initialize("G-9QTVJBH0G0", { debug: true });
+
 function Home() {
+  ReactGA.send({
+    hitType: "pageview",
+    page: "/",
+    title: "Home ",
+  });
   const [cartShow, setCartShow] = useState(false);
   const [formShow, setFormShow] = useState(false);
   const [orderShow, setOrderShow] = useState(false);
