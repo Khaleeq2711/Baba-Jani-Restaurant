@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import classes from "./AccountCard.module.css";
 import {
   createUserWithEmailAndPassword,
+  onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { auth } from "../services/firebase";
@@ -24,6 +25,11 @@ import Visibility from "@mui/icons-material/Visibility";
 import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import Modal from "../UI/Modal";
 import googlePng from "../assets/google-png-pic.png";
+import Profile from "./Profile";
+import { useDispatch } from "react-redux";
+import { cartActions } from "../store/store";
+import { CookiesProvider, useCookies } from 'react-cookie'
+
 
 const AccountCard = (props) => {
   const [enteredEmail, setEnteredEmail] = useState("");
@@ -38,6 +44,11 @@ const AccountCard = (props) => {
   const [success, setSuccess] = useState(false);
   const [successG, setSuccessG] = useState(false);
   const [successC, setSuccessC] = useState(false);
+  // const [userDetails, setUserDetails] = useState(null);
+
+  const dispatch = useDispatch();
+  const [cookies, setCookie] = useCookies(['user'])
+
 
   const passwordIconClickHandler = () => setShowPassword((show) => !show);
   const passwordMouseDownHandler = (event) => {
@@ -47,12 +58,16 @@ const AccountCard = (props) => {
   const loginHandler = (e) => {
     e.preventDefault();
     setShowWait(true);
-    signInWithEmailAndPassword();
+    // signInWithEmailAndPassword();
     signInWithEmailAndPassword(auth, enteredEmail, enteredPassword)
       .then((userCredential) => {
-        console.log(userCredential); /////////////////////////////////////////////////
+        console.log("USERRRRRRRR",JSON.stringify(userCredential.user)); ////////////////////////////////////////////////////
         setShowWait(false);
         setSuccess(true);
+        setCookie('user', userCredential.user, { path: '/' })
+        dispatch(cartActions.setuserDetails({name:userCredential.user.displayName, email: userCredential.user.email, uid: userCredential.user.uid, purl: userCredential.user.photoURL}));
+
+        // setUserDetails(userCredential.user); // Set user details
         setTimeout(() => {
           setSuccess(false);
           setEnteredPassword("");
@@ -73,9 +88,13 @@ const AccountCard = (props) => {
       setShowWait(true);
       createUserWithEmailAndPassword(auth, enteredEmail, enteredPassword)
         .then((userCredential) => {
-          console.log(userCredential); ////////////////////////////////////////////////////
+          console.log("USERRRRRRRR",userCredential.user.email); ////////////////////////////////////////////////////
           setShowWait(false);
           setSuccessC(true);
+          setCookie('user', userCredential.user, { path: '/' })
+          dispatch(cartActions.setuserDetails({name:userCredential.user.displayName, email: userCredential.user.email, uid: userCredential.user.uid, purl: userCredential.user.photoURL}));
+
+          // setUserDetails(userCredential.user); // Set user details
           setTimeout(() => {
             setSuccessC(false);
             setEnteredPassword("");
@@ -96,8 +115,11 @@ const AccountCard = (props) => {
     const provider = new GoogleAuthProvider();
     signInWithPopup(auth, provider)
       .then((userCredential) => {
-        console.log(userCredential); ///////////////////////////////////
+        console.log("USERRRRRRRR",userCredential.user.email); ////////////////////////////////////////////////////
         setSuccessG(true);
+        setCookie('user', userCredential.user, { path: '/' })
+        dispatch(cartActions.setuserDetails({name:userCredential.user.displayName, email: userCredential.user.email, uid: userCredential.user.uid, purl: userCredential.user.photoURL}));
+        // setUserDetails(userCredential.user); // Set user details
         setTimeout(() => {
           setSuccessG(false);
           setEnteredPassword("");
@@ -109,6 +131,16 @@ const AccountCard = (props) => {
         alert("Sign in with Google Failed");
       });
   };
+  // useEffect(() => {
+  //   const unsubscribe = onAuthStateChanged(auth, (user) => {
+  //     if (user) {
+  //       setUserDetails(user);
+  //     } else {
+  //       setUserDetails(null);
+  //     }
+  //   });
+  //   return () => unsubscribe();
+  // }, []);
 
   ////////////////////////////////////////////////////////////////////////////////////////////////////////////
   return (
@@ -310,8 +342,8 @@ const AccountCard = (props) => {
           {successG
             ? "Sign in With Google Account Successful !"
             : successC
-            ? "New User Created Successfully !"
-            : "Login Successfully !"}
+              ? "New User Created Successfully !"
+              : "Login Successfully !"}
         </Alert>
       </Snackbar>
     </>

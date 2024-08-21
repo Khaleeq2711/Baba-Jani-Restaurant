@@ -8,7 +8,7 @@ const cartSlice = createSlice({
     delivery: 0,
     addressD: undefined,
     orderStatus: false,
-
+    userDetails: null,
     itemsShop: [],
     totalPriceShop: 0,
     payment: "Cash",
@@ -16,6 +16,9 @@ const cartSlice = createSlice({
     // shopStatus: true,
   },
   reducers: {
+    setuserDetails(state, action){
+      state.userDetails = action.payload;
+    },
     addItem(state, action) {
       if (state.orderStatus !== true) {
         let updatedTotalPrice =
